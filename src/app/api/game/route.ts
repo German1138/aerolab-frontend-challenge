@@ -7,7 +7,48 @@ export async function GET(req: NextRequest) {
 
     const { data } = await axios.post(
       "https://api.igdb.com/v4/games",
-      `fields checksum,created_at,name,platforms.*,slug,updated_at,url,cover.*; where slug = "${id}";`,
+      `
+        fields
+        created_at,
+        name,
+        summary,
+        first_release_date, 
+        total_rating,
+        status,
+        involved_companies.company.name,
+
+        release_dates.status.name,
+        release_dates.status.description,
+        release_dates.human,
+
+        platforms.name,
+        platforms.abbreviation,
+        platforms.slug,
+        platforms.platform_logo.url,
+        platforms.platform_logo.image_id,
+
+        slug,
+        updated_at,
+        url,
+        genres.*,
+
+        similar_games.name,
+        similar_games.cover.url,
+        similar_games.cover.image_id,
+        similar_games.slug,
+
+        cover.url,
+        cover.image_id, 
+        screenshots.url,
+        screenshots.image_id; 
+
+
+        sort release_dates.date desc;
+
+        exclude genres.created_at, genres.checksum, genres.updated_at;
+
+        where slug = "${id}";
+      `,
       {
         headers: {
           Accept: "application/json",
