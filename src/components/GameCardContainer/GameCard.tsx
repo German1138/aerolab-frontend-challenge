@@ -9,7 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { loadInitialData } from "./GameCardContainer";
 import { cardStyle, iconButtonStyles, subContainer } from "./GameCard.style";
 import { IGame } from "@/app/interfaces";
-import CustomSnackbar from "../CollectGameButton/CustomSnackbar";
+import CustomSnackbar from "../CustomSnackbar/CustomSnackbar";
 
 interface IGameCard {
   game: IGame;
