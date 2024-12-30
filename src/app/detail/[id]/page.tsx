@@ -26,6 +26,7 @@ import handleUnixDate from "@/utils/handleUnixDate";
 import handleArrayOfObjects from "@/utils/handleArrayOfObjects";
 
 import CollectGameButton from "@/components/CollectGameButton/CollectGameButton";
+import GameCard from "@/components/GameCardContainer/GameCard";
 
 function GameDetail() {
   const router = useRouter();
@@ -33,7 +34,7 @@ function GameDetail() {
   const { id } = useParams<{ id: string }>();
   const [game, setGame] = useState<IGameDetail | null>(null);
 
-  const loadInitialData = async () => {
+  const loadInitialGameDetailData = async () => {
     try {
       const { data } = await axios.get(`/api/game?id=${id}`);
       setGame(data);
@@ -43,7 +44,7 @@ function GameDetail() {
   };
 
   useEffect(() => {
-    loadInitialData();
+    loadInitialGameDetailData();
   }, []);
 
   if (game === null) return <Box>Loading</Box>;
@@ -186,17 +187,11 @@ function GameDetail() {
         <Grid2 container spacing={2}>
           {game.similar_games.slice(0, 6).map((element) => {
             return (
-              <Grid2 size={4} key={element.id}>
-                <Link href={`/detail/${element.slug}`}>
-                  <Image
-                    src={customImageUrl("1080p", element.cover.image_id)}
-                    width={115}
-                    height={155}
-                    style={{ borderRadius: "8px" }}
-                    alt={`${element.name} cover`}
-                  />
-                </Link>
-              </Grid2>
+              <GameCard
+                key={element.id}
+                game={element}
+                disableIconButton={true}
+              />
             );
           })}
         </Grid2>
