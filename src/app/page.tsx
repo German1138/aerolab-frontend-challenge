@@ -2,7 +2,7 @@
 
 import { Box, Button, Container, Typography } from "@mui/material";
 import Searchbar from "@/components/Searchbar/Searchbar";
-import GameCard from "@/components/GameCard";
+import GameCardContainer from "@/components/GameCardContainer/GameCardContainer";
 
 import { useState } from "react";
 import {
@@ -53,7 +53,7 @@ export default function Home() {
         ))}
       </Box>
 
-      <GameCard filter={filter} />
+      <GameCardContainer filter={filter} />
     </Container>
   );
 }
