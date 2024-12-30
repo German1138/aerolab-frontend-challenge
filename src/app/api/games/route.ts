@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
                 slug,
                 cover.url,
                 cover.image_id;
-                sort release_dates ${filter === "newest" ? "desc" : "asc"};
+                sort first_release_date ${filter === "newest" ? "desc" : "asc"};
                 where ${slugConditions};
                 limit 50;`;
 
