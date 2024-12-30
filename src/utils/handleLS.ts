@@ -1,6 +1,6 @@
-import { IGame } from "@/app/interfaces";
+import { IGame, IGameDetail } from "@/app/interfaces";
 
-const handleLS = (game: IGame) => {
+const handleLS = (game: IGame | IGameDetail) => {
   if (typeof window === "undefined") return;
 
   try {
