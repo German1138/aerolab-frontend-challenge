@@ -1,40 +1,63 @@
-interface ICover {
+interface IImage {
   id: number;
-  alpha_channel: boolean;
-  animated: boolean;
-  game: number;
-  height: number;
   image_id: string;
   url: string;
-  width: number;
-  checksum: string;
 }
 
-interface IPlatform {
+interface IPlatforms {
   id: number;
   abbreviation: string;
-  alternative_name: string;
-  category: number;
-  created_at: number;
-  generation: number;
   name: string;
-  platform_logo: number;
-  platform_family: number;
+  platform_logo: {
+    id: number;
+    image_id: string;
+    url: string;
+  };
   slug: string;
+}
+
+interface IGenres {
+  id: number;
+  name: string;
+  slug: string;
+  url: string;
+}
+
+interface IInvolvedCompanies {
+  id: number;
+  company: { id: number; name: string };
+}
+
+interface ISimilarGames {
+  id: number;
+  name: string;
+  slug: string;
+  cover: IImage;
+}
+
+export interface IGameDetail {
+  id: number;
+  cover: IImage;
+  created_at: number;
+  first_release_date: number;
+  genres: IGenres[];
+  involved_companies: IInvolvedCompanies[];
+  name: string;
+  platforms: IPlatforms[];
+  release_dates: { id: number; human: string }[];
+  screenshots: IImage[];
+  similar_games: ISimilarGames[];
+  slug: string;
+  summary: string;
+  total_rating: number;
   updated_at: number;
   url: string;
-  versions: number[];
-  checksum: string;
 }
 
 export interface IGame {
   id: number;
-  cover: ICover;
+  cover: IImage;
   created_at: number;
   name: string;
-  platforms: IPlatform[];
   slug: string;
-  updated_at: number;
-  url: string;
-  checksum: string;
 }
