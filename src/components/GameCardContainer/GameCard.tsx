@@ -3,7 +3,14 @@
 import React, { useState, useCallback } from "react";
 import customImageUrl from "@/utils/customImageUrl";
 import handleLS from "@/utils/handleLS";
-import { Box, Grid2, Card, CardMedia, IconButton } from "@mui/material";
+import {
+  Box,
+  Grid2,
+  Card,
+  CardMedia,
+  IconButton,
+  useMediaQuery,
+} from "@mui/material";
 import Link from "next/link";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { loadInitialData } from "./GameCardContainer";
@@ -24,6 +31,8 @@ function GameCard({
   setGames,
   disableIconButton = false,
 }: IGameCard) {
+  const isMobile = useMediaQuery("(min-width:768px)");
+
   const [clicked, setClicked] = useState(true);
   const [open, setOpen] = useState(false);
 
@@ -41,7 +50,7 @@ function GameCard({
   );
 
   return (
-    <Grid2 size={4} key={game.id}>
+    <Grid2 size={isMobile ? 3 : 4} key={game.id}>
       <Box sx={subContainer}>
         <Link href={`/detail/${game.slug}`} passHref>
           <Card sx={cardStyle}>
