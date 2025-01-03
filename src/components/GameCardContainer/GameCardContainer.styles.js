@@ -7,6 +7,7 @@ export const noGamesContainer = {
 export const container = {
   display: "flex",
   flexDirection: "column",
+  justifyContent: "center",
   gap: "20px",
 };
 
@@ -14,5 +15,5 @@ export const subTitle = {
   fontSize: "20px",
   fontWeight: "600",
   color: "#6727A6",
-  textAlign: "left",
+  textAlign: { xs: "left", md: "center" },
 };

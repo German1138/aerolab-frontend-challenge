@@ -203,17 +203,23 @@ function GameCardContainer() {
 
       <Filters filter={filter} setFilter={setFilter} />
 
-      <Grid2 container spacing={1}>
-        {games.map((game: IGame) => (
-          <GameCard
-            key={game.id}
-            game={game}
-            filter={filter}
-            setGames={setGames}
-            disableIconButton={false}
-          />
-        ))}
-      </Grid2>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid2
+          container
+          spacing={1}
+          sx={{ width: { xs: "auto", md: "730px" } }}
+        >
+          {games.map((game: IGame) => (
+            <GameCard
+              key={game.id}
+              game={game}
+              filter={filter}
+              setGames={setGames}
+              disableIconButton={false}
+            />
+          ))}
+        </Grid2>
+      </Box>
     </Box>
   );
 }
