@@ -2,6 +2,7 @@ export const container = {
   display: "flex",
   gap: { xs: "15px", md: "auto" },
   overflow: "auto",
+  justifyContent: { xs: "start", md: "center" },
 };
 
 export const btnStylesMobile = {
@@ -10,5 +11,5 @@ export const btnStylesMobile = {
   borderRadius: "100px",
   textTransform: "capitalize",
   padding: "6px 12px",
-  minWidth: { xs: "100px", md: "auto" },
+  minWidth: "100px",
 };
