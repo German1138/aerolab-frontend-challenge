@@ -5,7 +5,7 @@ import customImageUrl from "@/utils/customImageUrl";
 import handleLS from "@/utils/handleLS";
 import { Box, Grid2, Card, CardMedia, IconButton } from "@mui/material";
 import Link from "next/link";
-import DeleteIcon from "@mui/icons-material/Delete";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { loadInitialData } from "./GameCardContainer";
 import { cardStyle, iconButtonStyles, subContainer } from "./GameCard.style";
 import { IGame } from "@/app/interfaces";
@@ -55,7 +55,7 @@ function GameCard({
 
         {!disableIconButton && (
           <IconButton onClick={handleClick} sx={iconButtonStyles}>
-            <DeleteIcon />
+            <DeleteOutlineOutlinedIcon />
           </IconButton>
         )}
 

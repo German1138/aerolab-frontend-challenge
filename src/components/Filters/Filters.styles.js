@@ -2,7 +2,6 @@ export const container = {
   display: "flex",
   gap: { xs: "15px", md: "auto" },
   overflow: "auto",
-  margin: "15px 0px 15px 0px",
 };
 
 export const btnStylesMobile = {

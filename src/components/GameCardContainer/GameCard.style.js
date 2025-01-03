@@ -17,4 +17,5 @@ export const cardStyle = {
   maxWidth: 170,
   width: "fit-content",
   cursor: "pointer",
+  borderRadius: "8px",
 };
