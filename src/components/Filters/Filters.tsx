@@ -2,7 +2,7 @@ import { Box, Button } from "@mui/material";
 import React, { Dispatch, SetStateAction } from "react";
 import { container, btnStylesMobile } from "./Filters.styles";
 
-const buttonData = [
+const BUTTONS_DATA = [
   { name: "last-added", label: "Last Added", id: 1 },
   { name: "newest", label: "Newest", id: 2 },
   {
@@ -18,24 +18,30 @@ interface IFilters {
 }
 
 function Filters({ filter, setFilter }: IFilters) {
+  const getButtonStyles = (isActive: boolean) => ({
+    ...btnStylesMobile,
+    ...(isActive && {
+      backgroundColor: "#3C1661",
+      color: "#FFFFFF",
+    }),
+  });
+
   return (
     <Box sx={container}>
-      {buttonData.map(({ name, label, id }) => (
-        <Button
-          key={id}
-          variant={filter === name ? "contained" : "text"}
-          onClick={() => setFilter(name)}
-          sx={{
-            ...btnStylesMobile,
-            ...(filter === name && {
-              backgroundColor: "#3C1661",
-              color: "#FFFFFF",
-            }),
-          }}
-        >
-          {label}
-        </Button>
-      ))}
+      {BUTTONS_DATA.map(({ name, label, id }) => {
+        const isActive = filter === name;
+        return (
+          <Button
+            key={id}
+            variant={isActive ? "contained" : "text"}
+            onClick={() => setFilter(name)}
+            aria-pressed={isActive}
+            sx={getButtonStyles(isActive)}
+          >
+            {label}
+          </Button>
+        );
+      })}
     </Box>
   );
 }
