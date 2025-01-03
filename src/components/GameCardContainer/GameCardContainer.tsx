@@ -8,7 +8,11 @@ import { IGame } from "@/app/interfaces";
 import GameCard from "./GameCard";
 import Filters from "../Filters/Filters";
 
-import { noGamesContainer, subTitle } from "./GameCardContainer.styles";
+import {
+  container,
+  noGamesContainer,
+  subTitle,
+} from "./GameCardContainer.styles";
 
 export const loadInitialData = async (
   setGames: React.Dispatch<React.SetStateAction<IGame[]>>,
@@ -192,7 +196,7 @@ function GameCardContainer() {
   }
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+    <Box sx={container}>
       <Typography variant="h3" sx={subTitle}>
         Saved games
       </Typography>
