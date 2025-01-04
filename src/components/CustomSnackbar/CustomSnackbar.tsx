@@ -36,7 +36,7 @@ function CustomSnackbar({ game, clicked, open, setOpen }: ISnackbarProps) {
     <Snackbar
       anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       open={open}
-      autoHideDuration={2000}
+      autoHideDuration={3000}
       onClose={handleClose}
     >
       <Box
