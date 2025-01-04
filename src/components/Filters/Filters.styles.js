@@ -10,6 +10,6 @@ export const btnStylesMobile = {
   color: "#3C1661",
   borderRadius: "100px",
   textTransform: "capitalize",
-  padding: "6px 12px",
+  padding: "4.75px 12px",
   minWidth: "100px",
 };

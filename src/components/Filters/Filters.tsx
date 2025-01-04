@@ -23,6 +23,7 @@ function Filters({ filter, setFilter }: IFilters) {
     ...(isActive && {
       backgroundColor: "#3C1661",
       color: "#FFFFFF",
+      fontWeight: "550",
     }),
   });
 
