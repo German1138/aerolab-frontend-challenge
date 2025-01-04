@@ -1,8 +1,8 @@
 "use client";
 
-import { Container, Typography } from "@mui/material";
-import Searchbar from "@/components/Searchbar/Searchbar";
+import { Container } from "@mui/material";
 import GameCardContainer from "@/components/GameCardContainer/GameCardContainer";
+import Header from "@/components/Header/Header";
 
 export default function Home() {
   return (
@@ -14,14 +14,7 @@ export default function Home() {
         padding: "30px 15px",
       }}
     >
-      <Typography
-        variant="h1"
-        sx={{ fontSize: "20px", fontWeight: "600", color: "#6727A6" }}
-      >
-        Gaming Haven Z
-      </Typography>
-
-      <Searchbar />
+      <Header />
 
       <GameCardContainer />
     </Container>
