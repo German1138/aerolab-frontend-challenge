@@ -10,6 +10,11 @@ import {
   CardMedia,
   IconButton,
   useMediaQuery,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  Button,
+  Slide,
 } from "@mui/material";
 import Link from "next/link";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
@@ -17,6 +22,7 @@ import { loadInitialData } from "./GameCardContainer";
 import { cardStyle, iconButtonStyles, subContainer } from "./GameCard.style";
 import { IGame } from "@/app/interfaces";
 import CustomSnackbar from "../CustomSnackbar/CustomSnackbar";
+import { TransitionProps } from "@mui/material/transitions";
 
 interface IGameCard {
   game: IGame;
@@ -24,6 +30,15 @@ interface IGameCard {
   setGames?: React.Dispatch<React.SetStateAction<IGame[]>>;
   disableIconButton?: boolean;
 }
+
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement;
+  },
+  ref: React.Ref<unknown>
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 function GameCard({
   game,
@@ -34,6 +49,7 @@ function GameCard({
   const isMobile = useMediaQuery("(min-width:768px)");
 
   const [clicked, setClicked] = useState(true);
+  const [openDialog, setOpenDialog] = useState(false);
   const [open, setOpen] = useState(false);
 
   const handleClick = useCallback(() => {
@@ -63,10 +79,33 @@ function GameCard({
         </Link>
 
         {!disableIconButton && (
-          <IconButton onClick={handleClick} sx={iconButtonStyles}>
+          <IconButton onClick={() => setOpenDialog(true)} sx={iconButtonStyles}>
             <DeleteOutlineOutlinedIcon />
           </IconButton>
         )}
+        <Dialog
+          open={openDialog}
+          TransitionComponent={Transition}
+          onClose={() => setOpenDialog(false)}
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle
+            sx={{ textWrap: "balance", padding: "15px", color: "#1e1e1e" }}
+          >{`You're removing "${game.name}"`}</DialogTitle>
+
+          <DialogActions>
+            <Button onClick={() => setOpenDialog(false)} sx={{ color: "grey" }}>
+              Cancel
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => handleClick()}
+              sx={{ backgroundColor: "#9b2424", fontWeight: "600" }}
+            >
+              Confirm
+            </Button>
+          </DialogActions>
+        </Dialog>
 
         <CustomSnackbar
           game={game}
