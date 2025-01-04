@@ -3,7 +3,7 @@ export const container = {
   justifyContent: "space-between",
   alignItems: "center",
   width: "100%",
-  maxWidth: "700px",
+  maxWidth: "360px",
   margin: "0 10px",
 };
 
