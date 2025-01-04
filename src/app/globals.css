@@ -18,10 +18,30 @@ body {
   overflow-x: hidden;
 }
 
+.MuiTypography-root {
+  font-family: inherit !important;
+}
+.MuiButton-root {
+  font-family: inherit !important;
+}
+
+.MuiChip-root {
+  font-family: inherit !important;
+}
+
+.MuiPopper-root ul {
+  padding: 0px !important;
+}
+
+.MuiPopper-root .MuiAutocomplete-paper {
+  background-color: transparent;
+  box-shadow: none;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
