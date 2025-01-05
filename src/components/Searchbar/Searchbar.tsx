@@ -1,17 +1,18 @@
 import {
   Autocomplete,
   Box,
+  CircularProgress,
   InputAdornment,
   TextField,
   Typography,
-  CircularProgress,
   debounce,
 } from "@mui/material";
+import React, { useCallback, useState } from "react";
+
+import Image from "next/image";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import React, { useState, useCallback } from "react";
 import axios from "axios";
 import customImageUrl from "@/utils/customImageUrl";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 interface Option {
@@ -158,15 +159,10 @@ const Searchbar = () => {
               {...restProps}
               sx={{
                 overflow: "hidden",
-                backgroundColor: "white !important",
                 borderRadius: isLast ? "0 0 20px 20px" : null,
                 borderBottom: isLast ? "2px solid #C698B8" : null,
                 borderRight: "2px solid #C698B8",
-                zIndex: 1300,
                 borderLeft: "2px solid #C698B8",
-
-                ":hover": { backgroundColor: "grey !important" },
-                ":focus-visible": { backgroundColor: "red !important" },
               }}
             >
               <Image
@@ -205,6 +201,7 @@ const Searchbar = () => {
                 sx={{
                   width: "100%",
                   maxWidth: "400px",
+                  padding: "0 10px",
                 }}
                 onChange={handleInputChange}
                 InputProps={{
@@ -213,21 +210,20 @@ const Searchbar = () => {
                   style: { color: "#C698B8", fontSize: "18px" },
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SearchOutlinedIcon style={{ color: "#C698B8" }} />
+                      <SearchOutlinedIcon style={{ color: "#6727A6" }} />
                     </InputAdornment>
                   ),
                 }}
               />
               {loading && (
                 <Box display="flex" justifyContent="center" marginTop={1}>
-                  <CircularProgress size={24} />
+                  <CircularProgress size={24} style={{ color: "#6727A6" }} />
                 </Box>
               )}
               {error && (
                 <Typography
                   variant="body2"
-                  color="error"
-                  style={{ marginTop: 5 }}
+                  style={{ marginTop: 5, color: "#D23F63" }}
                 >
                   {error}
                 </Typography>

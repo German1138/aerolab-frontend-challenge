@@ -31,11 +31,49 @@ body {
 
 .MuiPopper-root ul {
   padding: 0px !important;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: none;
+  --Paper-shadow: none !important;
 }
 
-.MuiPopper-root .MuiAutocomplete-paper {
-  background-color: transparent;
+.MuiPopper-root {
+  width: 100%;
+  max-width: 400px;
   box-shadow: none;
+  --Paper-shadow: none !important;
+}
+.MuiAutocomplete-paper {
+  border-radius: 0 0 20px 20px !important;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: none;
+  --Paper-shadow: none !important;
+}
+
+/* @media (max-width: 768px) {
+  .MuiPopper-root ul {
+    padding: 0px !important;
+    width: 100%;
+    box-shadow: none;
+    --Paper-shadow: none !important;
+  }
+
+  .MuiPopper-root {
+    box-shadow: none;
+    --Paper-shadow: none !important;
+    width: 100%;
+  }
+  .MuiAutocomplete-paper {
+    border-radius: 0 0 20px 20px !important;
+    width: 100%;
+    box-shadow: none;
+    --Paper-shadow: none !important;
+  }
+} */
+
+.css-1cv3st9-MuiPaper-root-MuiAutocomplete-paper {
+  font-family: inherit !important;
 }
 
 body {
