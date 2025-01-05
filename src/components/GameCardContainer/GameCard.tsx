@@ -20,12 +20,12 @@ import Link from "next/link";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { loadInitialData } from "./GameCardContainer";
 import { cardStyle, iconButtonStyles, subContainer } from "./GameCard.style";
-import { IGame } from "@/app/interfaces";
+import { IGame, ISimilarGames } from "@/app/interfaces";
 import CustomSnackbar from "../CustomSnackbar/CustomSnackbar";
 import { TransitionProps } from "@mui/material/transitions";
 
 interface IGameCard {
-  game: IGame;
+  game: IGame | ISimilarGames;
   filter?: string;
   setGames?: React.Dispatch<React.SetStateAction<IGame[]>>;
   disableIconButton?: boolean;
@@ -100,7 +100,7 @@ function GameCard({
             <Button
               variant="contained"
               onClick={() => handleClick()}
-              sx={{ backgroundColor: "#9b2424", fontWeight: "600" }}
+              sx={{ backgroundColor: "#D23F63", fontWeight: "600" }}
             >
               Confirm
             </Button>
