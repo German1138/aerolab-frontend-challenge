@@ -28,7 +28,7 @@ interface IInvolvedCompanies {
   company: { id: number; name: string };
 }
 
-interface ISimilarGames {
+export interface ISimilarGames {
   id: number;
   name: string;
   slug: string;
@@ -60,4 +60,8 @@ export interface IGame {
   created_at: number;
   name: string;
   slug: string;
+}
+
+export interface IGameProps {
+  game: IGameDetail;
 }
