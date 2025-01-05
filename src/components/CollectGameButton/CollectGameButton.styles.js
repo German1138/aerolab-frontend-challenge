@@ -1,15 +1,14 @@
 export const btnStyleFalse = {
-  width: "100%",
+  width: { xs: "100%", sm: "165px" },
   borderRadius: "30px",
   textTransform: "capitalize",
   fontSize: "16px",
   color: "#6727A6",
   fontWeight: "600",
   border: "1px solid #6727A6",
-  display: { xs: "block", md: "none" },
 };
 export const btnStyleTrue = {
-  width: "100%",
+  width: { xs: "100%", sm: "165px" },
   borderRadius: "30px",
   textTransform: "capitalize",
   fontSize: "16px",
@@ -17,5 +16,4 @@ export const btnStyleTrue = {
   color: "#FFFFFF",
   fontWeight: "600",
   border: "1px solid #6727A6",
-  display: { xs: "block", md: "none" },
 };
