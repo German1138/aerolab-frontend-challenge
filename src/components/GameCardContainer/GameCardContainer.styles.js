@@ -17,3 +17,5 @@ export const subTitle = {
   color: "#6727A6",
   textAlign: { xs: "left", md: "center" },
 };
+
+export const gridContainer = { display: "flex", justifyContent: "center" };

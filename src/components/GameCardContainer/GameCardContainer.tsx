@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { Box, Grid2, Typography } from "@mui/material";
-import axios from "axios";
-
-import { IGame } from "@/app/interfaces";
-import GameCard from "./GameCard";
-import Filters from "../Filters/Filters";
-
+import React, { useEffect, useState } from "react";
 import {
   container,
+  gridContainer,
   noGamesContainer,
   subTitle,
 } from "./GameCardContainer.styles";
+
+import Filters from "../Filters/Filters";
+import GameCard from "./GameCard";
+import { IGame } from "@/app/interfaces";
+import axios from "axios";
 
 export const loadInitialData = async (
   setGames: React.Dispatch<React.SetStateAction<IGame[]>>,
@@ -203,12 +203,8 @@ function GameCardContainer() {
 
       <Filters filter={filter} setFilter={setFilter} />
 
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <Grid2
-          container
-          spacing={1}
-          sx={{ width: { xs: "auto", md: "730px" } }}
-        >
+      <Box sx={gridContainer}>
+        <Grid2 container spacing={1} width={{ xs: "100%", md: "730px" }}>
           {games.map((game: IGame) => (
             <GameCard
               key={game.id}
