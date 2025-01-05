@@ -1,8 +1,8 @@
 import React from "react";
-import { Box, Snackbar, Typography } from "@mui/material";
+import { Box, Slide, Snackbar, Typography } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import { IGame, IGameDetail } from "@/app/interfaces";
+import { IGame, ISimilarGames } from "@/app/interfaces";
 import {
   messageStyle,
   snackbarContainer,
@@ -11,7 +11,7 @@ import {
 } from "./CustomSnackbar.styles";
 
 interface ISnackbarProps {
-  game: IGame | IGameDetail;
+  game: IGame | ISimilarGames;
   clicked: boolean;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -36,6 +36,7 @@ function CustomSnackbar({ game, clicked, open, setOpen }: ISnackbarProps) {
     <Snackbar
       anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       open={open}
+      TransitionComponent={(props) => <Slide {...props} direction="up" />}
       autoHideDuration={3000}
       onClose={handleClose}
     >
