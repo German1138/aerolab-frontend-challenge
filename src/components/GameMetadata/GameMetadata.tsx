@@ -1,4 +1,5 @@
 import { Box, Chip, Typography } from "@mui/material";
+import { Calendar, Puzzle, Star } from "lucide-react";
 import {
   chipStyles,
   container,
@@ -6,11 +7,8 @@ import {
   labelStyles,
 } from "./GameMetadata.styles";
 
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import ExtensionIcon from "@mui/icons-material/Extension";
 import { IGameDetail } from "@/app/interfaces";
 import React from "react";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import handleUnixDate from "@/utils/handleUnixDate";
 
 interface IGameMetadata {
@@ -22,19 +20,17 @@ function GameMetadata({ game }: IGameMetadata) {
     {
       label: "Rating: ",
       info: Math.round(game.total_rating) / 10,
-      icon: <StarBorderIcon style={{ color: "#6727A6", fontSize: "18px" }} />,
+      icon: <Star color="#6727A6" size="16px" />,
     },
     {
       label: "Release: ",
       info: handleUnixDate(game.first_release_date),
-      icon: (
-        <CalendarTodayIcon style={{ color: "#6727A6", fontSize: "18px" }} />
-      ),
+      icon: <Calendar color="#6727A6" size="16px" />,
     },
     {
       label: "Genre: ",
       info: game.genres[0].name,
-      icon: <ExtensionIcon style={{ color: "#6727A6", fontSize: "18px" }} />,
+      icon: <Puzzle color="#6727A6" size="16px" />,
     },
   ];
 
