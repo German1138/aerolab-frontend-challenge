@@ -1,28 +1,29 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
-import customImageUrl from "@/utils/customImageUrl";
-import handleLS from "@/utils/handleLS";
 import {
   Box,
-  Grid2,
+  Button,
   Card,
   CardMedia,
-  IconButton,
-  useMediaQuery,
   Dialog,
-  DialogTitle,
   DialogActions,
-  Button,
+  DialogTitle,
+  Grid2,
+  IconButton,
   Slide,
+  useMediaQuery,
 } from "@mui/material";
-import Link from "next/link";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import { loadInitialData } from "./GameCardContainer";
-import { cardStyle, iconButtonStyles, subContainer } from "./GameCard.style";
 import { IGame, ISimilarGames } from "@/app/interfaces";
+import React, { useCallback, useState } from "react";
+import { cardStyle, iconButtonStyles, subContainer } from "./GameCard.style";
+
 import CustomSnackbar from "../CustomSnackbar/CustomSnackbar";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import Link from "next/link";
 import { TransitionProps } from "@mui/material/transitions";
+import customImageUrl from "@/utils/customImageUrl";
+import handleLS from "@/utils/handleLS";
+import { loadInitialData } from "./GameCardContainer";
 
 interface IGameCard {
   game: IGame | ISimilarGames;
