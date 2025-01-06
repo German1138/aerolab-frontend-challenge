@@ -125,6 +125,23 @@ const Searchbar = () => {
     }
   };
 
+  const handleTextFieldStyles = () => {
+    if (isSearchBarOnFocus) {
+      return {
+        textDecorationLine: "none",
+        backgroundColor: "#FFFFFF",
+        borderRadius: "20px 20px 0 0",
+        border: "1px solid #E7C0DB",
+      };
+    } else {
+      return {
+        borderRadius: "20px",
+        backgroundColor: "#FFFFFF",
+        border: "1px solid #E7C0DB",
+      };
+    }
+  };
+
   const optionsLength = options.length;
 
   return (
@@ -133,10 +150,12 @@ const Searchbar = () => {
         display: "flex",
         justifyContent: "center",
         width: "100%",
+        zIndex: 1300,
+        minHeight: "40px",
       }}
     >
       <Autocomplete
-        sx={{ width: "100%", maxWidth: "400px" }}
+        sx={{ width: "100%", maxWidth: "400px", minHeight: "40px" }}
         disableCloseOnSelect
         freeSolo
         handleHomeEndKeys
@@ -160,9 +179,9 @@ const Searchbar = () => {
               sx={{
                 overflow: "hidden",
                 borderRadius: isLast ? "0 0 20px 20px" : null,
-                borderBottom: isLast ? "2px solid #C698B8" : null,
-                borderRight: "2px solid #C698B8",
-                borderLeft: "2px solid #C698B8",
+                borderBottom: isLast ? "1px solid #E7C0DB" : null,
+                borderRight: "1px solid #E7C0DB",
+                borderLeft: "1px solid #E7C0DB",
               }}
             >
               <Image
@@ -178,30 +197,19 @@ const Searchbar = () => {
         }}
         renderInput={(params) => {
           return (
-            <Box>
+            <>
               <TextField
-                onFocus={() => setIsSearchBarOnFocus(isSearchBarOnFocus)}
-                onBlur={() => setIsSearchBarOnFocus(!isSearchBarOnFocus)}
+                onFocus={() => setIsSearchBarOnFocus(true)}
+                onBlur={() => setIsSearchBarOnFocus(false)}
                 {...params}
                 placeholder="Search games..."
                 variant="standard"
                 fullWidth
-                style={
-                  isSearchBarOnFocus
-                    ? {
-                        textDecorationLine: "none",
-                        borderRadius: "20px 20px 0 0",
-                        border: "2px solid #C698B8",
-                      }
-                    : {
-                        borderRadius: "20px",
-                        border: "2px solid #C698B8",
-                      }
-                }
+                style={handleTextFieldStyles()}
                 sx={{
                   width: "100%",
                   maxWidth: "400px",
-                  padding: "0 10px",
+                  minHeight: "40px",
                 }}
                 onChange={handleInputChange}
                 InputProps={{
@@ -210,7 +218,12 @@ const Searchbar = () => {
                   style: { color: "#C698B8", fontSize: "18px" },
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SearchOutlinedIcon style={{ color: "#6727A6" }} />
+                      <SearchOutlinedIcon
+                        style={{
+                          color: isSearchBarOnFocus ? "#6727A6" : "#E7C0DB",
+                          marginLeft: "5px",
+                        }}
+                      />
                     </InputAdornment>
                   ),
                 }}
@@ -228,7 +241,7 @@ const Searchbar = () => {
                   {error}
                 </Typography>
               )}
-            </Box>
+            </>
           );
         }}
       />
