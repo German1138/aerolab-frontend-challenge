@@ -33,19 +33,20 @@ function GameDetail() {
 
   if (game === null) return <LoadingSpinner />;
   return (
-    <Container sx={container}>
+    <>
       <Header goBackButton={true} />
+      <Container sx={container}>
+        <GameIntroSection game={game} />
 
-      <GameIntroSection game={game} />
+        <GameMetadata game={game} />
 
-      <GameMetadata game={game} />
+        <GameInfo game={game} />
 
-      <GameInfo game={game} />
+        <MediaGallery game={game} />
 
-      <MediaGallery game={game} />
-
-      <SimilarGames game={game} />
-    </Container>
+        <SimilarGames game={game} />
+      </Container>
+    </>
   );
 }
 
