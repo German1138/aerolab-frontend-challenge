@@ -1,17 +1,17 @@
-import { IGameDetail } from "@/app/interfaces";
-import handleUnixDate from "@/utils/handleUnixDate";
 import { Box, Chip, Typography } from "@mui/material";
-import React from "react";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import ExtensionIcon from "@mui/icons-material/Extension";
-
 import {
   chipStyles,
   container,
   infoStyles,
   labelStyles,
 } from "./GameMetadata.styles";
+
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import ExtensionIcon from "@mui/icons-material/Extension";
+import { IGameDetail } from "@/app/interfaces";
+import React from "react";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import handleUnixDate from "@/utils/handleUnixDate";
 
 interface IGameMetadata {
   game: IGameDetail;
@@ -22,19 +22,19 @@ function GameMetadata({ game }: IGameMetadata) {
     {
       label: "Rating: ",
       info: Math.round(game.total_rating) / 10,
-      icon: <StarBorderIcon style={{ color: "#6727A6", fontSize: "13px" }} />,
+      icon: <StarBorderIcon style={{ color: "#6727A6", fontSize: "18px" }} />,
     },
     {
       label: "Release: ",
       info: handleUnixDate(game.first_release_date),
       icon: (
-        <CalendarTodayIcon style={{ color: "#6727A6", fontSize: "13px" }} />
+        <CalendarTodayIcon style={{ color: "#6727A6", fontSize: "18px" }} />
       ),
     },
     {
       label: "Genre: ",
       info: game.genres[0].name,
-      icon: <ExtensionIcon style={{ color: "#6727A6", fontSize: "13px" }} />,
+      icon: <ExtensionIcon style={{ color: "#6727A6", fontSize: "18px" }} />,
     },
   ];
 
