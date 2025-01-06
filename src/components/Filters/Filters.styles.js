@@ -11,5 +11,4 @@ export const btnStylesMobile = {
   borderRadius: "100px",
   textTransform: "capitalize",
   padding: "4.75px 12px",
-  minWidth: "110px",
 };
