@@ -1,5 +1,5 @@
-import axios from "axios";
 import { NextRequest } from "next/server";
+import axios from "axios";
 
 export async function GET(req: NextRequest) {
   try {
@@ -7,8 +7,9 @@ export async function GET(req: NextRequest) {
 
     const { data } = await axios.post(
       "https://api.igdb.com/v4/games",
-      `fields name, slug, cover.image_id; 
-                where name != null & cover.image_id != null & name ~ "${value}"*; limit 5;`,
+      `fields name, cover.image_id, slug; 
+      where name != null & cover.image_id != null & name ~ "${value}"*; 
+      limit 10;`,
       {
         headers: {
           Accept: "application/json",
