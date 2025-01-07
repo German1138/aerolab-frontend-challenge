@@ -1,3 +1,5 @@
+import { typographyLinearGradient } from "@/app/page.styles";
+
 export const container = { display: "flex", gap: "20px" };
 
 export const gameTitle = {
@@ -5,6 +7,7 @@ export const gameTitle = {
   color: "#3C1661",
   fontWeight: "600",
   margin: "0 0 10px 0",
+  ...typographyLinearGradient,
 };
 
 export const gameCompanyStyle = {

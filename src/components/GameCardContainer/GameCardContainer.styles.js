@@ -1,3 +1,5 @@
+import { typographyLinearGradient } from "@/app/page.styles";
+
 export const noGamesContainer = {
   display: "flex",
   flexDirection: "column",
@@ -16,6 +18,7 @@ export const subTitle = {
   fontWeight: "600",
   color: "#6727A6",
   textAlign: { xs: "left", md: "center" },
+  ...typographyLinearGradient,
 };
 
 export const gridContainer = { display: "flex", justifyContent: "center" };

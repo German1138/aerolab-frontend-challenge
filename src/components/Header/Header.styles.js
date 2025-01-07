@@ -1,3 +1,5 @@
+import { typographyLinearGradient } from "@/app/page.styles";
+
 export const container = {
   background: "linear-gradient(#FF00AE29, #FFFFFF )",
   padding: { xs: "30px 15px 50px 15px", md: "100px 15px 50px 15px" },
@@ -20,6 +22,7 @@ export const goBackBtn = {
   textTransform: "capitalize",
   marginBottom: { xs: "15px", sm: 0 },
   zIndex: 1300,
+  ...typographyLinearGradient,
 };
 
 export const secondaryContainer = {
@@ -69,4 +72,5 @@ export const titleStyle = {
   fontWeight: "600",
   color: "#6727A6",
   zIndex: 1300,
+  ...typographyLinearGradient,
 };
