@@ -49,6 +49,7 @@ function Filters({ filter, setFilter }: IFilters) {
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
+    const currentFilterRef = filtersRef;
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsSticky(!entry.isIntersecting);
@@ -56,13 +57,13 @@ function Filters({ filter, setFilter }: IFilters) {
       { threshold: 0 }
     );
 
-    if (filtersRef.current) {
-      observer.observe(filtersRef.current);
+    if (currentFilterRef.current) {
+      observer.observe(currentFilterRef.current);
     }
 
     return () => {
-      if (filtersRef.current) {
-        observer.unobserve(filtersRef.current);
+      if (currentFilterRef.current) {
+        observer.unobserve(currentFilterRef.current);
       }
     };
   }, []);
