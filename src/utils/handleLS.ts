@@ -5,7 +5,6 @@ const handleLS = (game: IGame | IGameDetail) => {
 
   try {
     const savedArray = JSON.parse(localStorage.getItem("myArray")) || [];
-    console.log(savedArray);
     const gameSlug = game?.slug;
 
     if (!gameSlug) return;
