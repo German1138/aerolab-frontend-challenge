@@ -4,7 +4,8 @@ const handleLS = (game: IGame | IGameDetail | IGameBase): boolean => {
   if (typeof window === "undefined") return false;
 
   try {
-    const savedArray = JSON.parse(localStorage.getItem("myArray") || "") || [];
+    const savedArray = JSON.parse(localStorage.getItem("myArray") || "[]");
+
     const gameSlug = game?.slug;
 
     if (!gameSlug) return false;
