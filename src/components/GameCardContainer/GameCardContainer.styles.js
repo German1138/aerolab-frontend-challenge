@@ -19,3 +19,5 @@ export const subTitle = {
 };
 
 export const gridContainer = { display: "flex", justifyContent: "center" };
+
+export const gridSubContainer = { xs: "100%", md: "730px" };
