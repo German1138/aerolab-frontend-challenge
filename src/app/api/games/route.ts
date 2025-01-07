@@ -1,5 +1,6 @@
-import axios from "axios";
+import { IGame } from "@/app/interfaces";
 import { NextRequest } from "next/server";
+import axios from "axios";
 
 export async function GET(req: NextRequest) {
   const slugs = req?.nextUrl?.searchParams?.get("slugs");
@@ -29,9 +30,10 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    if (filter === "last-added") {
+    if (filter === "last-added" && slugsArray) {
       data.sort(
-        (a, b) => slugsArray.indexOf(b.slug) - slugsArray.indexOf(a.slug)
+        (a: IGame, b: IGame) =>
+          slugsArray.indexOf(b.slug) - slugsArray.indexOf(a.slug)
       );
     }
 
