@@ -159,15 +159,10 @@ const Searchbar = () => {
           typeof option === "string" ? option : option.name || ""
         }
         renderOption={(props, option) => {
-          const { key, ...restProps } = props;
+          const { ...restProps } = props;
 
           return (
-            <Box
-              component="li"
-              key={option.id}
-              {...restProps}
-              overflow="hidden"
-            >
+            <Box component="li" {...restProps} overflow="hidden">
               <Image
                 src={customImageUrl("micro", option.cover?.image_id || "")}
                 alt={option.name}
