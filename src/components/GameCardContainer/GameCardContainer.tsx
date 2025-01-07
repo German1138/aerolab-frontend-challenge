@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import {
   container,
   gridContainer,
+  gridSubContainer,
   noGamesContainer,
   subTitle,
 } from "./GameCardContainer.styles";
@@ -83,7 +84,7 @@ function GameCardContainer() {
       <Filters filter={filter} setFilter={setFilter} />
 
       <Box sx={gridContainer}>
-        <Grid2 container spacing={1} width={{ xs: "100%", md: "730px" }}>
+        <Grid2 container spacing={1} width={gridSubContainer}>
           {games.map((game: IGame) => (
             <GameCard
               key={game.id}
