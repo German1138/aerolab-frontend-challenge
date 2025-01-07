@@ -1,16 +1,13 @@
+import { Box, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Button, Box } from "@mui/material";
-import { useParams } from "next/navigation";
 import { btnStyleFalse, btnStyleTrue } from "./CollectGameButton.styles";
-import handleLS from "@/utils/handleLS";
+
 import CustomSnackbar from "../CustomSnackbar/CustomSnackbar";
-import { IGameDetail } from "@/app/interfaces";
+import { IGameProps } from "@/app/interfaces";
+import handleLS from "@/utils/handleLS";
+import { useParams } from "next/navigation";
 
-interface ICollectGameButtonProps {
-  game: IGameDetail;
-}
-
-function CollectGameButton({ game }: ICollectGameButtonProps) {
+function CollectGameButton({ game }: IGameProps) {
   const params = useParams();
   const [clicked, setClicked] = useState(false);
   const [open, setOpen] = useState(false);
