@@ -9,13 +9,13 @@ import {
   subContainer,
   titleStyle,
 } from "./Header.styles";
+import { redirect, useRouter } from "next/navigation";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Image from "next/image";
 import React from "react";
 import Searchbar from "../Searchbar/Searchbar";
 import { Swords } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 function Header({ goBackButton = false }) {
   const router = useRouter();
@@ -76,6 +76,7 @@ function Header({ goBackButton = false }) {
           >
             Back
           </Button>
+
           <Searchbar />
         </Box>
         {handleImage()}
@@ -84,7 +85,7 @@ function Header({ goBackButton = false }) {
 
   return (
     <Box sx={secondaryContainer}>
-      <Box sx={secondarySubContainer}>
+      <Box sx={secondarySubContainer} onClick={() => redirect("/")}>
         {pageLogo()}
         <Typography variant="h1" sx={titleStyle}>
           Gaming Haven Z
