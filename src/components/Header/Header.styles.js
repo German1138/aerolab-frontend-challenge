@@ -34,6 +34,7 @@ export const secondaryContainer = {
 };
 
 export const secondarySubContainer = {
+  cursor: "pointer",
   display: "flex",
   justifyContent: { xs: "start", sm: "center" },
   gap: "20px",
