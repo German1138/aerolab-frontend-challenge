@@ -13,24 +13,22 @@ import {
   Slide,
   useMediaQuery,
 } from "@mui/material";
-import { IGame, ISimilarGames } from "@/app/interfaces";
 import React, { useCallback, useState } from "react";
-import { cardStyle, iconButtonStyles, subContainer } from "./GameCard.style";
+import {
+  btnStyle,
+  cardStyle,
+  iconButtonStyles,
+  subContainer,
+} from "./GameCard.style";
 
 import CustomSnackbar from "../CustomSnackbar/CustomSnackbar";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import { IGameCard } from "@/app/interfaces";
 import Link from "next/link";
 import { TransitionProps } from "@mui/material/transitions";
+import { Trash } from "lucide-react";
 import customImageUrl from "@/utils/customImageUrl";
 import handleLS from "@/utils/handleLS";
 import { loadInitialData } from "./GameCardContainer";
-
-interface IGameCard {
-  game: IGame | ISimilarGames;
-  filter?: string;
-  setGames?: React.Dispatch<React.SetStateAction<IGame[]>>;
-  disableIconButton?: boolean;
-}
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -81,7 +79,7 @@ function GameCard({
 
         {!disableIconButton && (
           <IconButton onClick={() => setOpenDialog(true)} sx={iconButtonStyles}>
-            <DeleteOutlineOutlinedIcon />
+            <Trash size={16} color="#000000" />
           </IconButton>
         )}
         <Dialog
@@ -101,7 +99,7 @@ function GameCard({
             <Button
               variant="contained"
               onClick={() => handleClick()}
-              sx={{ backgroundColor: "#D23F63", fontWeight: "600" }}
+              sx={btnStyle}
             >
               Confirm
             </Button>
