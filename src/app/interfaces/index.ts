@@ -15,7 +15,7 @@ export interface IOption {
   };
 }
 
-interface IPlatform extends IOption {
+export interface IPlatform extends IOption {
   abbreviation: string;
   platform_logo: IImage;
 }
@@ -29,7 +29,7 @@ interface IInvolvedCompany {
   company: IOption;
 }
 
-interface IGameBase extends IOption {
+export interface IGameBase extends IOption {
   cover: IImage;
 }
 

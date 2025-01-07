@@ -17,7 +17,7 @@ function GameInfo({ game }: IGameProps) {
         Platforms
       </Typography>
       <Typography sx={paragraphStyle}>
-        {handleArrayOfObjects(game.platforms)}
+        {handleArrayOfObjects({ platforms: game.platforms })}
       </Typography>
     </>
   );

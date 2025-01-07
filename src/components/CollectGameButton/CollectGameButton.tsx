@@ -8,7 +8,7 @@ import handleLS from "@/utils/handleLS";
 import { useParams } from "next/navigation";
 
 function CollectGameButton({ game }: IGameProps) {
-  const params = useParams();
+  const params: { id: string } = useParams();
   const [clicked, setClicked] = useState(false);
   const [open, setOpen] = useState(false);
 

@@ -1,10 +1,12 @@
-const handleArrayOfObjects = (array, propertyPath: string[] = null) => {
-  const result = array.map((element) => {
-    if (propertyPath) {
-      return element[propertyPath[0]][propertyPath[1]];
-    } else {
-      return element.name;
-    }
+import { IPlatform } from "@/app/interfaces";
+
+interface IHandleArrayOfObjects {
+  platforms: IPlatform[];
+}
+
+const handleArrayOfObjects = ({ platforms }: IHandleArrayOfObjects) => {
+  const result = platforms.map((element) => {
+    return element.name;
   });
   return result.join(", ");
 };
