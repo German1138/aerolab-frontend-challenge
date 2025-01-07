@@ -7,19 +7,15 @@ import {
   labelStyles,
 } from "./GameMetadata.styles";
 
-import { IGameDetail } from "@/app/interfaces";
+import { IGameProps } from "@/app/interfaces";
 import React from "react";
 import handleUnixDate from "@/utils/handleUnixDate";
 
-interface IGameMetadata {
-  game: IGameDetail;
-}
-
-function GameMetadata({ game }: IGameMetadata) {
+function GameMetadata({ game }: IGameProps) {
   const FILTERED_DATA = [
     {
       label: "Rating: ",
-      info: Math.round(game.total_rating) / 10,
+      info: Math.round(game.total_rating) / 10 || "-",
       icon: <Star color="#6727A6" size="16px" />,
     },
     {
