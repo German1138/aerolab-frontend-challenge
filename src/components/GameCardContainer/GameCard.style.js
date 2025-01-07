@@ -1,7 +1,9 @@
 export const iconButtonStyles = {
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#ffffffdb",
   position: "absolute",
   height: "40px",
+  width: "40px",
+
   bottom: 12,
   right: 15,
   ":hover": {
@@ -19,3 +21,5 @@ export const cardStyle = {
   cursor: "pointer",
   borderRadius: "8px",
 };
+
+export const btnStyle = { backgroundColor: "#D23F63", fontWeight: "600" };
