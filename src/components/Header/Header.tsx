@@ -65,13 +65,21 @@ function Header({ goBackButton = false }) {
     );
   };
 
+  const handleGoBack = () => {
+    if (window.history.length <= 1) {
+      router.push("/");
+    } else {
+      router.back();
+    }
+  };
+
   if (goBackButton)
     return (
       <Box sx={container}>
         <Box sx={subContainer}>
           <Button
             startIcon={<ArrowBackIcon />}
-            onClick={() => router.push("/")}
+            onClick={() => handleGoBack()}
             sx={goBackBtn}
           >
             Back
