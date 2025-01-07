@@ -71,7 +71,7 @@ function Header({ goBackButton = false }) {
         <Box sx={subContainer}>
           <Button
             startIcon={<ArrowBackIcon />}
-            onClick={() => router.back()}
+            onClick={() => router.push("/")}
             sx={goBackBtn}
           >
             Back
