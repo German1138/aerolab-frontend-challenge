@@ -26,6 +26,8 @@ export const isSearchBar = {
 };
 
 export const circularProgress = {
+  display: "flex",
+  justifyContent: "center",
   padding: "5px 35px",
   backgroundColor: "white",
   borderRadius: "0 0 8px 8px",
