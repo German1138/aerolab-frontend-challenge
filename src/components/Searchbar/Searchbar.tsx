@@ -7,7 +7,7 @@ import {
   Typography,
   debounce,
 } from "@mui/material";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import {
   autocompleteStyles,
   circularProgress,
@@ -87,31 +87,44 @@ const Searchbar = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleInputChange = useCallback(
-    debounce(async (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value = event.target.value;
-      setSearchTerm(value);
-      setError(null);
-      setLoading(true);
+  const debouncedFetch = useMemo(
+    () =>
+      debounce(async (value: string) => {
+        setError(null);
+        setLoading(true);
 
-      if (!value) setOptions(DEFAULT_GAMES);
-      if (value.length) {
+        if (!value) {
+          setOptions(DEFAULT_GAMES);
+          setLoading(false);
+          return;
+        }
+
         try {
           const results = await fetchSearchResults(value);
+
           if (results.length === 0) {
+            setOptions([]);
             setError("No results found.");
           }
           setOptions(results);
         } catch (err) {
           console.error("Error fetching results.", err);
           setOptions([]);
+          setError("Failed to fetch results.");
+        } finally {
+          setLoading(false);
         }
-      } else {
-        setOptions([]);
-      }
-      setLoading(false);
-    }, 1000),
+      }, 300),
     []
+  );
+
+  const handleInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value;
+      setSearchTerm(value);
+      debouncedFetch(value);
+    },
+    [debouncedFetch]
   );
 
   const handleOptionSelect = (
@@ -159,10 +172,14 @@ const Searchbar = () => {
           typeof option === "string" ? option : option.name || ""
         }
         renderOption={(props, option) => {
-          const { ...restProps } = props;
-
+          const { key, ...restProps } = props;
           return (
-            <Box component="li" {...restProps} overflow="hidden">
+            <Box
+              component="li"
+              key={`${key}-${option.id}`}
+              {...restProps}
+              overflow="hidden"
+            >
               <Image
                 src={customImageUrl("micro", option.cover?.image_id || "")}
                 alt={option.name}
