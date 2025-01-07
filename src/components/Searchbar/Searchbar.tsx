@@ -8,21 +8,22 @@ import {
   debounce,
 } from "@mui/material";
 import React, { useCallback, useState } from "react";
+import {
+  autocompleteStyles,
+  circularProgress,
+  container,
+  errorMessage,
+  isSearchBar,
+  liImage,
+  textField,
+} from "./Searchbar.styles";
 
+import { IOption } from "@/app/interfaces";
 import Image from "next/image";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { Search } from "lucide-react";
 import axios from "axios";
 import customImageUrl from "@/utils/customImageUrl";
 import { useRouter } from "next/navigation";
-
-interface Option {
-  id: number;
-  name: string;
-  slug: string;
-  cover?: {
-    image_id: string;
-  };
-}
 
 const DEFAULT_GAMES = [
   {
@@ -67,7 +68,7 @@ const DEFAULT_GAMES = [
   },
 ];
 
-const fetchSearchResults = async (query: string): Promise<Option[]> => {
+const fetchSearchResults = async (query: string): Promise<IOption[]> => {
   try {
     const { data } = await axios.get(`/api/search?value=${query}`);
     return data;
@@ -81,7 +82,7 @@ const Searchbar = () => {
   const router = useRouter();
 
   const [isSearchBarOnFocus, setIsSearchBarOnFocus] = useState(false);
-  const [options, setOptions] = useState<Option[]>(DEFAULT_GAMES);
+  const [options, setOptions] = useState<IOption[]>(DEFAULT_GAMES);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -93,7 +94,8 @@ const Searchbar = () => {
       setError(null);
       setLoading(true);
 
-      if (value.length >= 3) {
+      if (!value) setOptions(DEFAULT_GAMES);
+      if (value.length) {
         try {
           const results = await fetchSearchResults(value);
           if (results.length === 0) {
@@ -108,13 +110,13 @@ const Searchbar = () => {
         setOptions([]);
       }
       setLoading(false);
-    }, 500),
+    }, 1000),
     []
   );
 
   const handleOptionSelect = (
     event: React.SyntheticEvent<Element, Event>,
-    value: string | Option | null
+    value: string | IOption | null
   ) => {
     if (value) {
       if (typeof value === "string") {
@@ -128,34 +130,23 @@ const Searchbar = () => {
   const handleTextFieldStyles = () => {
     if (isSearchBarOnFocus) {
       return {
+        ...isSearchBar,
         textDecorationLine: "none",
-        backgroundColor: "#FFFFFF",
         borderRadius: "20px 20px 0 0",
-        border: "1px solid #E7C0DB",
       };
     } else {
       return {
+        ...isSearchBar,
         borderRadius: "20px",
-        backgroundColor: "#FFFFFF",
-        border: "1px solid #E7C0DB",
       };
     }
   };
 
-  const optionsLength = options.length;
-
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        width: "100%",
-        zIndex: 1300,
-        minHeight: "40px",
-      }}
-    >
+    <Box sx={container}>
       <Autocomplete
-        sx={{ width: "100%", maxWidth: "400px", minHeight: "40px" }}
+        disableClearable
+        sx={autocompleteStyles}
         disableCloseOnSelect
         freeSolo
         handleHomeEndKeys
@@ -169,27 +160,20 @@ const Searchbar = () => {
         }
         renderOption={(props, option) => {
           const { key, ...restProps } = props;
-          const isLast = options[optionsLength - 1].id === option.id;
 
           return (
             <Box
               component="li"
-              key={key}
+              key={option.id}
               {...restProps}
-              sx={{
-                overflow: "hidden",
-                borderRadius: isLast ? "0 0 20px 20px" : null,
-                borderBottom: isLast ? "1px solid #E7C0DB" : null,
-                borderRight: "1px solid #E7C0DB",
-                borderLeft: "1px solid #E7C0DB",
-              }}
+              overflow="hidden"
             >
               <Image
                 src={customImageUrl("micro", option.cover?.image_id || "")}
                 alt={option.name}
                 width={30}
                 height={30}
-                style={{ marginRight: 10, borderRadius: "4px" }}
+                style={liImage}
               />
               {option.name}
             </Box>
@@ -206,22 +190,24 @@ const Searchbar = () => {
                 variant="standard"
                 fullWidth
                 style={handleTextFieldStyles()}
-                sx={{
-                  width: "100%",
-                  maxWidth: "400px",
-                  minHeight: "40px",
-                }}
+                sx={textField}
                 onChange={handleInputChange}
                 InputProps={{
                   ...params.InputProps,
                   disableUnderline: true,
-                  style: { color: "#C698B8", fontSize: "18px" },
+                  style: {
+                    fontSize: "18px",
+                    padding: "3px 0px 3px 0px",
+                  },
                   startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchOutlinedIcon
+                    <InputAdornment
+                      position="start"
+                      sx={{ padding: "0 0px 0 15px" }}
+                    >
+                      <Search
+                        size="16px"
                         style={{
                           color: isSearchBarOnFocus ? "#6727A6" : "#E7C0DB",
-                          marginLeft: "5px",
                         }}
                       />
                     </InputAdornment>
@@ -229,14 +215,19 @@ const Searchbar = () => {
                 }}
               />
               {loading && (
-                <Box display="flex" justifyContent="center" marginTop={1}>
+                <Box sx={circularProgress}>
                   <CircularProgress size={24} style={{ color: "#6727A6" }} />
                 </Box>
               )}
               {error && (
                 <Typography
+                  onFocus={() => setIsSearchBarOnFocus(true)}
+                  onBlur={() => setIsSearchBarOnFocus(false)}
                   variant="body2"
-                  style={{ marginTop: 5, color: "#D23F63" }}
+                  style={{
+                    ...errorMessage,
+                    display: isSearchBarOnFocus ? "block" : "none",
+                  }}
                 >
                   {error}
                 </Typography>
