@@ -6,7 +6,13 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import React, { useState } from "react";
-import { mediaContainer, subTitle } from "./MediaGallery.styles";
+import {
+  btn,
+  mediaContainer,
+  modalStyles,
+  modalSubContainer,
+  subTitle,
+} from "./MediaGallery.styles";
 
 import CloseIcon from "@mui/icons-material/Close";
 import { IGameProps } from "@/app/interfaces";
@@ -18,81 +24,50 @@ function MediaGallery({ game }: IGameProps) {
   const [selectedImage, setSelectedImage] = useState("");
   const [open, setOpen] = useState(false);
 
-  return (
-    <>
-      <Typography variant="h2" sx={subTitle}>
-        Media
-      </Typography>
-      <Box sx={mediaContainer}>
-        {game.screenshots.map((element) => {
-          return (
-            <Image
-              onClick={() => {
-                setOpen(true);
-                setSelectedImage(element.image_id);
-              }}
-              key={element.id}
-              src={customImageUrl("thumb", element.image_id)}
-              width={isNotMobile ? 132 : 85}
-              height={isNotMobile ? 132 : 85}
-              alt={`${game.name} screenshot`}
-              style={{ borderRadius: "8px", cursor: "pointer" }}
-            />
-          );
-        })}
-      </Box>
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        sx={{
-          bgcolor: "#E5E5E5",
-          backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)",
-        }}
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "90%",
-            maxWidth: "1200px",
-            backgroundColor: "#FFFFFF",
-            borderRadius: "8px",
-            boxShadow: 24,
-            outline: "none",
-            padding: 2,
-          }}
-        >
-          <IconButton
-            onClick={() => setOpen(false)}
-            sx={{
-              position: "absolute",
-              top: -16,
-              right: -16,
-              color: "#666666",
-              backgroundColor: "#FFFFFF",
-
-              ":hover": { backgroundColor: "#E5E5E5" },
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-
-          <img
-            src={customImageUrl("1080p", selectedImage)}
-            alt={`${game.name} screenshot`}
-            style={{
-              width: "100%",
-              height: "auto",
-              borderRadius: "10px",
-            }}
-          />
+  if (game.screenshots)
+    return (
+      <>
+        <Typography variant="h2" sx={subTitle}>
+          Media
+        </Typography>
+        <Box sx={mediaContainer}>
+          {game.screenshots?.map((element) => {
+            return (
+              <Image
+                onClick={() => {
+                  setOpen(true);
+                  setSelectedImage(element.image_id);
+                }}
+                key={element.id}
+                src={customImageUrl("thumb", element.image_id)}
+                width={isNotMobile ? 132 : 85}
+                height={isNotMobile ? 132 : 85}
+                alt={`${game.name} screenshot`}
+                style={{ borderRadius: "8px", cursor: "pointer" }}
+              />
+            );
+          })}
         </Box>
-      </Modal>
-    </>
-  );
+        <Modal open={open} onClose={() => setOpen(false)} sx={modalStyles}>
+          <Box sx={modalSubContainer}>
+            <IconButton onClick={() => setOpen(false)} sx={btn}>
+              <CloseIcon />
+            </IconButton>
+
+            <Image
+              src={customImageUrl("1080p", selectedImage)}
+              alt={`${game.name} screenshot`}
+              width={1920}
+              height={1080}
+              layout="responsive"
+              style={{
+                borderRadius: "10px",
+              }}
+            />
+          </Box>
+        </Modal>
+      </>
+    );
 }
 
 export default MediaGallery;
