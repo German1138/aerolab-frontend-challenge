@@ -1,67 +1,76 @@
+import { Dispatch, SetStateAction } from "react";
+
 interface IImage {
   id: number;
   image_id: string;
   url: string;
 }
 
-interface IPlatforms {
+export interface IOption {
   id: number;
-  abbreviation: string;
   name: string;
-  platform_logo: {
-    id: number;
-    image_id: string;
-    url: string;
-  };
   slug: string;
+  cover?: {
+    image_id: string;
+  };
 }
 
-interface IGenres {
-  id: number;
-  name: string;
-  slug: string;
+interface IPlatform extends IOption {
+  abbreviation: string;
+  platform_logo: IImage;
+}
+
+interface IGenre extends IOption {
   url: string;
 }
 
-interface IInvolvedCompanies {
+interface IInvolvedCompany {
   id: number;
-  company: { id: number; name: string };
+  company: IOption;
 }
 
-export interface ISimilarGames {
-  id: number;
-  name: string;
-  slug: string;
+interface IGameBase extends IOption {
   cover: IImage;
 }
 
-export interface IGameDetail {
-  id: number;
-  cover: IImage;
+export interface IGameDetail extends IGameBase {
   created_at: number;
   first_release_date: number;
-  genres: IGenres[];
-  involved_companies: IInvolvedCompanies[];
-  name: string;
-  platforms: IPlatforms[];
+  genres: IGenre[];
+  involved_companies: IInvolvedCompany[];
+  platforms: IPlatform[];
   release_dates: { id: number; human: string }[];
   screenshots: IImage[];
-  similar_games: ISimilarGames[];
-  slug: string;
+  similar_games: IGameBase[];
   summary: string;
   total_rating: number;
   updated_at: number;
   url: string;
 }
 
-export interface IGame {
-  id: number;
-  cover: IImage;
+export interface IGame extends IGameBase {
   created_at: number;
-  name: string;
-  slug: string;
 }
 
 export interface IGameProps {
   game: IGameDetail;
+}
+
+export interface IGameCard {
+  game: IGame | IGameBase;
+  filter?: string;
+  setGames?: Dispatch<SetStateAction<IGame[]>>;
+  disableIconButton?: boolean;
+}
+
+export interface IFilters {
+  filter: string;
+  setFilter: Dispatch<SetStateAction<string>>;
+}
+
+export interface ISnackbarProps {
+  game: IGame | IGameBase;
+  clicked: boolean;
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
