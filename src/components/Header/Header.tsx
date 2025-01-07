@@ -2,7 +2,11 @@ import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import {
   container,
   goBackBtn,
+  logoContainer,
+  logoSubContainer,
   secondaryContainer,
+  secondarySubContainer,
+  subContainer,
   titleStyle,
 } from "./Header.styles";
 
@@ -10,6 +14,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Image from "next/image";
 import React from "react";
 import Searchbar from "../Searchbar/Searchbar";
+import { Swords } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 function Header({ goBackButton = false }) {
@@ -50,18 +55,20 @@ function Header({ goBackButton = false }) {
     }
   };
 
+  const pageLogo = () => {
+    return (
+      <Box sx={logoContainer}>
+        <Box sx={logoSubContainer}>
+          <Swords color="#3C1661" size="16px" style={{ zIndex: 1300 }} />
+        </Box>
+      </Box>
+    );
+  };
+
   if (goBackButton)
     return (
-      <Box
-        sx={{
-          background: "linear-gradient(#FF00AE29, #FFFFFF )",
-          padding: "30px 15px 50px 15px",
-          width: "100%",
-          display: { xs: "block", sm: "flex" },
-          justifyContent: "center",
-        }}
-      >
-        <Box sx={container}>
+      <Box sx={container}>
+        <Box sx={subContainer}>
           <Button
             startIcon={<ArrowBackIcon />}
             onClick={() => router.back()}
@@ -76,16 +83,13 @@ function Header({ goBackButton = false }) {
     );
 
   return (
-    <Box
-      sx={{
-        ...secondaryContainer,
-        background: "linear-gradient(#FF00AE29, #FFFFFF )",
-        padding: "30px 15px 50px 15px",
-      }}
-    >
-      <Typography variant="h1" sx={titleStyle}>
-        Gaming Haven Z
-      </Typography>
+    <Box sx={secondaryContainer}>
+      <Box sx={secondarySubContainer}>
+        {pageLogo()}
+        <Typography variant="h1" sx={titleStyle}>
+          Gaming Haven Z
+        </Typography>
+      </Box>
       <Searchbar />
 
       {handleImage()}
