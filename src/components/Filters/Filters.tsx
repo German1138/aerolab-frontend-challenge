@@ -1,14 +1,14 @@
 "use client";
 
 import { Box, Button } from "@mui/material";
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { btnStylesMobile, container } from "./Filters.styles";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  btnStylesMobile,
+  container,
+  floatingFiltersContainer,
+} from "./Filters.styles";
+
+import { IFilters } from "@/app/interfaces";
 
 const BUTTONS_DATA = [
   { name: "last-added", label: "Last Added", id: 1 },
@@ -19,11 +19,6 @@ const BUTTONS_DATA = [
     id: 3,
   },
 ];
-
-interface IFilters {
-  filter: string;
-  setFilter: Dispatch<SetStateAction<string>>;
-}
 
 function Filters({ filter, setFilter }: IFilters) {
   const getButtonStyles = (isActive: boolean, isFloating = false) => {
@@ -104,23 +99,11 @@ function Filters({ filter, setFilter }: IFilters) {
       {(isSticky || showSticky) && (
         <Box
           sx={{
-            position: "fixed",
-            top: 20,
-            left: "50%",
+            ...floatingFiltersContainer,
             transform: isSticky
               ? "translateX(-50%) translateY(0)"
               : "translateX(-50%) translateY(-10px)",
             opacity: isSticky ? 1 : 0,
-            transition: "opacity 0.3s ease, transform 0.3s ease",
-            zIndex: 1300,
-            display: "flex",
-            maxHeight: "40px",
-            textWrap: "nowrap",
-            backgroundColor: "#ffffffba",
-            borderRadius: "100px",
-            padding: "4px",
-            boxShadow: "none",
-            backdropFilter: "blur(10px)",
           }}
         >
           {BUTTONS_DATA.map(({ name, label, id }) => {
