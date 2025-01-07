@@ -1,8 +1,4 @@
-import React from "react";
 import { Box, Slide, Snackbar, Typography } from "@mui/material";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import { IGame, ISimilarGames } from "@/app/interfaces";
 import {
   messageStyle,
   snackbarContainer,
@@ -10,12 +6,10 @@ import {
   titleStyle,
 } from "./CustomSnackbar.styles";
 
-interface ISnackbarProps {
-  game: IGame | ISimilarGames;
-  clicked: boolean;
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import { ISnackbarProps } from "@/app/interfaces";
+import React from "react";
 
 function CustomSnackbar({ game, clicked, open, setOpen }: ISnackbarProps) {
   const handleClose = (
