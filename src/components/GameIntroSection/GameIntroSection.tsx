@@ -30,7 +30,9 @@ function GameIntroSection({ game }: IGameProps) {
               {game.name}
             </Typography>
             <Typography sx={gameCompanyStyle}>
-              {game.involved_companies[0].company.name}
+              {game?.involved_companies
+                ? game.involved_companies[0]?.company.name
+                : "Unknown"}
             </Typography>
           </Box>
           {isNotMobile && <CollectGameButton game={game} />}
