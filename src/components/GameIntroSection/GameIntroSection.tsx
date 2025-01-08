@@ -19,11 +19,15 @@ function GameIntroSection({ game }: IGameProps) {
       <Box sx={container}>
         <Image
           src={customImageUrl("cover_big", game.cover.image_id)}
-          width={115}
-          height={155}
           alt={`${game.name} cover`}
-          style={{ borderRadius: "8px" }}
+          height={isNotMobile ? 226 : 110}
+          width={isNotMobile ? 170 : 82.5}
+          objectFit="cover"
+          style={{
+            borderRadius: "8px",
+          }}
         />
+
         <Box>
           <Box marginBottom={"20px"}>
             <Typography variant="h1" component="h1" sx={gameTitle}>
