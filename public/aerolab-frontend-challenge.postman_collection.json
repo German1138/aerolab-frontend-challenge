@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "e219418e-4985-498f-bbc3-026be8bc5122",
+		"name": "aerolab-frontend-challenge",
+		"description": "Collection to get games by filters.\n\nAuthentication:\n\n- {authorization-token}: IGDB API authentication token.\n    \n- {client-ID}: IGDB client ID",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40692420"
+	},
+	"item": [
+		{
+			"name": "getGames",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Client-ID",
+						"value": "{{client-ID}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "fields created_at,\r\nname,\r\nslug,\r\ncover.url,\r\ncover.image_id;\r\nwhere rating >= 90 & themes != (42);\r\nlimit 50;"
+				},
+				"url": {
+					"raw": "https://api.igdb.com/v4/games",
+					"protocol": "https",
+					"host": [
+						"api",
+						"igdb",
+						"com"
+					],
+					"path": [
+						"v4",
+						"games"
+					]
+				},
+				"description": "Returns an array of games with the information required in the body."
+			},
+			"response": []
+		},
+		{
+			"name": "getGame",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Client-ID",
+						"value": "{{client-ID}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "fields\r\ncreated_at,\r\nname,\r\nsummary,\r\nfirst_release_date, \r\nrating,\r\nstatus,\r\ninvolved_companies.company.name,\r\n\r\nrelease_dates.status.name,\r\nrelease_dates.status.description,\r\nrelease_dates.human,\r\n\r\nplatforms.name,\r\nplatforms.abbreviation,\r\nplatforms.slug,\r\nplatforms.url,\r\nplatforms.platform_logo.url,\r\nplatforms.platform_logo.image_id,\r\n\r\nslug,\r\nupdated_at,\r\nurl,\r\ngenres.*,\r\n\r\nsimilar_games.name,\r\nsimilar_games.slug,\r\nsimilar_games.cover.url,\r\nsimilar_games.cover.image_id,\r\n\r\ncover.url,\r\ncover.image_id, \r\nscreenshots.url,\r\nscreenshots.image_id; \r\n\r\n\r\nsort release_dates.date desc;\r\n\r\nexclude genres.created_at, genres.checksum, genres.updated_at;\r\n\r\nwhere slug = \"cult-of-the-lamb\";",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.igdb.com/v4/games",
+					"protocol": "https",
+					"host": [
+						"api",
+						"igdb",
+						"com"
+					],
+					"path": [
+						"v4",
+						"games"
+					]
+				},
+				"description": "Returns an array with one game filtered by slug in the body."
+			},
+			"response": []
+		},
+		{
+			"name": "search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Client-ID",
+						"value": "{{client-ID}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " fields name, cover.image_id, slug; \r\n\r\nwhere name != null & cover.image_id != null & name ~ \"minec\"*; limit 5;\r\n"
+				},
+				"url": {
+					"raw": "https://api.igdb.com/v4/games/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"igdb",
+						"com"
+					],
+					"path": [
+						"v4",
+						"games",
+						""
+					]
+				},
+				"description": "Returns an array of games that match with the game name specified in the body."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authorization-token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "authorization-token",
+			"value": "vy7gfgr5dq8gcaescavkddfb5hv0zf",
+			"type": "string"
+		},
+		{
+			"key": "client-ID",
+			"value": "2uazome8wji9ppqb1o3hg1o8qvm140",
+			"type": "string"
+		}
+	]
+}

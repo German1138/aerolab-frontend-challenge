@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
         pathname: "/igdb/image/**",
       },
     ],
+    unoptimized: true,
   },
 };
 

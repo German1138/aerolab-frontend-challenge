@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aerolab Coding Challenge
 
-## Getting Started
+[Demo »](https://gaming-haven-z-gman.vercel.app/)
 
-First, run the development server:
+![Gaming Haven Z webpage demostration in mobile](image.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About this challenge
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The objective was to develop a web application enabling users to search for and digitally organize video games by leveraging the IGDB API and browser/device storage. The project is required to use the Next.js App Router, with flexible styling options. The final deliverable should be fully functional, visually appealing, and offer an excellent user experience, with an emphasis on responsive and mobile-friendly design.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Challenge information »](https://github.com/Aerolab/frontend-developer-coding-challenge)
+- [IGDB API information »](https://api-docs.igdb.com/#getting-started)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
 
-## Learn More
+- **Next.js:** Used for routing and overall application development (TypeScript).
+- **Material UI:** Implemented for visual design and styled components.
+- **lucide-react:** Integrated to include modern and customizable icons.
+- **Axios:** Used to perform HTTP requests and fetch API data.
+- **Vercel:** Platform used for deployment and hosting of the application.
 
-To learn more about Next.js, take a look at the following resources:
+## Postman collection
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project uses a Postman collection to interact with the IGDB API. The collection includes predefined requests for key functionalities, such as:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Get Games: Fetches a list of games filtered by specific criteria, such as rating and themes.
+2. Get Game: Retrieves detailed information about a specific game using its slug.
+3. Search: Finds games matching a partial name query.
 
-## Deploy on Vercel
+You can find the full Postman collection [here](public/aerolab-frontend-challenge.postman_collection.json).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### How to Use:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Download the collection:**
+
+- Click the link above to download the `aerolab-frontend-challenge.postman_collection.json` file.
+
+2. **Import into Postman:**
+
+- Open Postman and click on **Import**.
+- Select the downloaded JSON file.
+
+3. **Configure Authentication:**
+
+- Add your `authorization-token` and `client-ID` in Postman's environment variables.
+
+#### Example API Endpoints:
+
+- **Base URL:** `https://api.igdb.com/v4/games`
+- **Authentication Headers:**
+  - `Authorization: Bearer {{authorization-token}}`
+  - `Client-ID: {{client-ID}}`
+
+This setup ensures you can test the API endpoints seamlessly. If you need further details about the API, refer to the IGDB API documentation.
