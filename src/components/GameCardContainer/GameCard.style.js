@@ -15,9 +15,9 @@ export const iconButtonStyles = {
 
 export const subContainer = { position: "relative", width: "fit-content" };
 
-export const cardStyle = {
-  maxWidth: 170,
-  width: "fit-content",
+export const imageStyle = {
+  maxWidth: "170px",
+  maxHeight: "226px",
   cursor: "pointer",
   borderRadius: "8px",
 };
