@@ -24,6 +24,17 @@ function MediaGallery({ game }: IGameProps) {
   const [selectedImage, setSelectedImage] = useState("");
   const [open, setOpen] = useState(false);
 
+  const desktop = useMediaQuery("(min-width:1024px)");
+  const mobile = useMediaQuery("(max-width:425px)");
+
+  const handleScreenshot = () => {
+    let size = "screenshot_big";
+    if (desktop) size = "screenshot_huge";
+    if (mobile) size = "screenshot_med";
+
+    return customImageUrl(size, selectedImage);
+  };
+
   if (game.screenshots)
     return (
       <>
@@ -55,7 +66,7 @@ function MediaGallery({ game }: IGameProps) {
             </IconButton>
 
             <Image
-              src={customImageUrl("1080p", selectedImage)}
+              src={handleScreenshot()}
               alt={`${game.name} screenshot`}
               width={1920}
               height={1080}
