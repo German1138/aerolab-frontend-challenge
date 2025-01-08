@@ -50,7 +50,10 @@ function MediaGallery({ game }: IGameProps) {
                   setSelectedImage(element.image_id);
                 }}
                 key={element.id}
-                src={customImageUrl("thumb", element.image_id)}
+                src={customImageUrl(
+                  isNotMobile ? "logo_med" : "thumb",
+                  element.image_id
+                )}
                 width={isNotMobile ? 132 : 85}
                 height={isNotMobile ? 132 : 85}
                 alt={`${game.name} screenshot`}
