@@ -1,8 +1,10 @@
 import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import {
+  buttonsMobileContainer,
   container,
   goBackBtn,
   logoContainer,
+  logoMobileContainer,
   logoSubContainer,
   secondaryContainer,
   secondarySubContainer,
@@ -57,7 +59,7 @@ function Header({ goBackButton = false }) {
 
   const pageLogo = () => {
     return (
-      <Box sx={logoContainer}>
+      <Box sx={logoContainer} onClick={() => redirect("/")}>
         <Box sx={logoSubContainer}>
           <Swords color="#3C1661" size="16px" style={{ zIndex: 1300 }} />
         </Box>
@@ -77,15 +79,20 @@ function Header({ goBackButton = false }) {
     return (
       <Box sx={container}>
         <Box sx={subContainer}>
-          <Button
-            startIcon={<ArrowBackIcon />}
-            onClick={() => handleGoBack()}
-            sx={goBackBtn}
-          >
-            Back
-          </Button>
+          <Box sx={buttonsMobileContainer}>
+            <Button
+              startIcon={<ArrowBackIcon />}
+              onClick={() => handleGoBack()}
+              sx={goBackBtn}
+            >
+              Back
+            </Button>
+            {!isNotMobile && <Box sx={logoMobileContainer}>{pageLogo()}</Box>}
+          </Box>
 
           <Searchbar />
+
+          {isNotMobile && pageLogo()}
         </Box>
         {handleImage()}
       </Box>
