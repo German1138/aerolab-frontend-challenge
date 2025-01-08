@@ -78,7 +78,12 @@ function GameCard({
         </Link>
 
         {!disableIconButton && (
-          <IconButton onClick={() => setOpenDialog(true)} sx={iconButtonStyles}>
+          <IconButton
+            aria-label="Delete game"
+            focusVisibleClassName="focus-visible"
+            onClick={() => setOpenDialog(true)}
+            sx={iconButtonStyles}
+          >
             <Trash size={16} color="#000000" />
           </IconButton>
         )}
