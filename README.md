@@ -2,6 +2,8 @@
 
 [Demo »](https://gaming-haven-z-gman.vercel.app/)
 
+![image](https://github.com/user-attachments/assets/7a8c6020-c744-4542-8e72-68b0b928614b)
+
 ## About this challenge
 
 The objective was to develop a web application enabling users to search for and digitally organize video games by leveraging the IGDB API and browser/device storage. The project is required to use the Next.js App Router, with flexible styling options. The final deliverable should be fully functional, visually appealing, and offer an excellent user experience, with an emphasis on responsive and mobile-friendly design.
@@ -21,9 +23,9 @@ The objective was to develop a web application enabling users to search for and 
 
 This project uses a Postman collection to interact with the IGDB API. The collection includes predefined requests for key functionalities, such as:
 
-1. Get Games: Fetches a list of games filtered by specific criteria, such as rating and themes.
-2. Get Game: Retrieves detailed information about a specific game using its slug.
-3. Search: Finds games matching a partial name query.
+1. **Get Games:** Fetches a list of games filtered by specific criteria, such as rating and themes.
+2. **Get Game:** Retrieves detailed information about a specific game using its slug.
+3. **Search:** Finds games matching a partial name query.
 
 You can find the full Postman collection [here](public/aerolab-frontend-challenge.postman_collection.json).
 
@@ -51,7 +53,7 @@ You can find the full Postman collection [here](public/aerolab-frontend-challeng
 
 This setup ensures you can test the API endpoints seamlessly. If you need further details about the API, refer to the IGDB API documentation.
 
-### Extra features
+## Extra features
 
 - **Enhanced the user experience (UX):** by adding the app logo on the game detail page, which redirects users to the home page.
 - **Implemented a modal:** to showcase various game screenshots.
