@@ -13,6 +13,7 @@ export const subContainer = {
   padding: { xs: 0, md: "0 15px" },
   display: { xs: "block", sm: "flex" },
   justifyContent: "space-between",
+  alignItems: "center",
 };
 
 export const goBackBtn = {
@@ -20,7 +21,6 @@ export const goBackBtn = {
   fontWeight: "600",
   fontSize: "16px",
   textTransform: "capitalize",
-  marginBottom: { xs: "15px", sm: 0 },
   zIndex: 1300,
   ...typographyLinearGradient,
 };
@@ -42,6 +42,7 @@ export const secondarySubContainer = {
 };
 
 export const logoContainer = {
+  cursor: "pointer",
   width: "30px",
   height: "30px",
   boxShadow: "0px 0px 20px 0px rgb(255 0 174 / 17%)",
@@ -74,4 +75,13 @@ export const titleStyle = {
   color: "#6727A6",
   zIndex: 1300,
   ...typographyLinearGradient,
+};
+
+export const logoMobileContainer = { padding: "0 15px 0 0", zIndex: 1300 };
+
+export const buttonsMobileContainer = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: { xs: "15px", sm: 0 },
 };
