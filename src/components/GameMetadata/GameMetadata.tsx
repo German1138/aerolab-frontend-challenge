@@ -20,12 +20,12 @@ function GameMetadata({ game }: IGameProps) {
     },
     {
       label: "Release: ",
-      info: handleUnixDate(game.first_release_date),
+      info: handleUnixDate(game.first_release_date) || "Unknown",
       icon: <Calendar color="#6727A6" size="16px" />,
     },
     {
       label: "Genre: ",
-      info: game.genres[0].name,
+      info: game.genres[0].name || "Unknown",
       icon: <Puzzle color="#6727A6" size="16px" />,
     },
   ];
