@@ -3,8 +3,6 @@
 import {
   Box,
   Button,
-  Card,
-  CardMedia,
   Dialog,
   DialogActions,
   DialogTitle,
@@ -16,13 +14,14 @@ import {
 import React, { useCallback, useState } from "react";
 import {
   btnStyle,
-  cardStyle,
   iconButtonStyles,
+  imageStyle,
   subContainer,
 } from "./GameCard.style";
 
 import CustomSnackbar from "../CustomSnackbar/CustomSnackbar";
 import { IGameCard } from "@/app/interfaces";
+import Image from "next/image";
 import Link from "next/link";
 import { TransitionProps } from "@mui/material/transitions";
 import { Trash } from "lucide-react";
@@ -45,7 +44,7 @@ function GameCard({
   setGames,
   disableIconButton = false,
 }: IGameCard) {
-  const isMobile = useMediaQuery("(min-width:768px)");
+  const isNotMobile = useMediaQuery("(min-width:768px)");
 
   const [clicked, setClicked] = useState(true);
   const [openDialog, setOpenDialog] = useState(false);
@@ -65,16 +64,17 @@ function GameCard({
   );
 
   return (
-    <Grid2 size={isMobile ? 3 : 4} key={game.id}>
+    <Grid2 size={isNotMobile ? 3 : 4} key={game.id}>
       <Box sx={subContainer}>
         <Link href={`/detail/${game.slug}`} passHref>
-          <Card sx={cardStyle}>
-            <CardMedia
-              component="img"
-              image={gameImageUrl()}
-              alt={`${game.name} cover`}
-            />
-          </Card>
+          <Image
+            src={gameImageUrl()}
+            width={isNotMobile ? 170 : 114}
+            height={isNotMobile ? 226 : 152}
+            layout="responsive"
+            alt={`${game.name} cover`}
+            style={imageStyle}
+          />
         </Link>
 
         {!disableIconButton && (
