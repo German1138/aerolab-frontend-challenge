@@ -50,3 +50,9 @@ You can find the full Postman collection [here](public/aerolab-frontend-challeng
   - `Client-ID: {{client-ID}}`
 
 This setup ensures you can test the API endpoints seamlessly. If you need further details about the API, refer to the IGDB API documentation.
+
+### Extra features
+
+- **Enhanced the user experience (UX):** by adding the app logo on the game detail page, which redirects users to the home page.
+- **Implemented a modal:** to showcase various game screenshots.
+- **Introduced a confirmation dialog:** before removing a game from the collection on the home page. This improvement enhances UX by asking users to confirm their action, ensuring they are certain about the deletion.
