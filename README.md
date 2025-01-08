@@ -2,8 +2,6 @@
 
 [Demo »](https://gaming-haven-z-gman.vercel.app/)
 
-![Gaming Haven Z webpage demostration in mobile](image.png)
-
 ## About this challenge
 
 The objective was to develop a web application enabling users to search for and digitally organize video games by leveraging the IGDB API and browser/device storage. The project is required to use the Next.js App Router, with flexible styling options. The final deliverable should be fully functional, visually appealing, and offer an excellent user experience, with an emphasis on responsive and mobile-friendly design.
